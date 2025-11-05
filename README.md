@@ -1,6 +1,7 @@
 # SDK Examples (minimal)
 
 Quickstart
+- For a sanitized demo (safe for recording): ./demo.sh
 1. Set env vars:
    - export AUTH_TOKEN=sk_test_xxx
    - export BASE_URL=https://api.example.com/v1
