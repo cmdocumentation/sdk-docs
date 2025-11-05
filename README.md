@@ -1,5 +1,5 @@
 # SDK Examples (minimal)
-https://github.com/cmdocumentation/sdk-docs/actions
+[smoke tests](https://github.com/cmdocumentation/sdk-docs/actions)
 
 ## Quickstart
 1. Set env vars:
