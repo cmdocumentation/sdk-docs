@@ -1,5 +1,5 @@
 # SDK Examples (minimal)
-[smoke tests](https://github.com/cmdocumentation/sdk-docs/actions)
+[![Smoke tests](https://github.com/cmdocumentation/sdk-docs/actions/workflows/smoke.yml/badge.svg)](https://github.com/cmdocumentation/sdk-docs/actions/workflows/smoke.yml)
 
 ## Quickstart
 1. Set env vars:
