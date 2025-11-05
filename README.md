@@ -1,6 +1,6 @@
 # SDK Examples (minimal)
 
-Quickstart
+## Quickstart
 - For a sanitized demo (safe for recording): ./demo.sh
 1. Set env vars:
    - export AUTH_TOKEN=sk_test_xxx
@@ -9,10 +9,11 @@ Quickstart
    - (Node 18+) cd examples/js && node index.js
 3. Run Python example:
    - (Python 3.10+) cd examples/python && python example.py
+4. Run sanitized demo: ./demo.sh
 
 Expected: JSON-like responses for list/create API calls. Replace BASE_URL with a real sandbox URL to call a live test API.
 
-Stubbing (recommended for public repos / CI)
+## Stubbing (recommended for public repos / CI)
 - Node: use `nock` to intercept HTTP calls. Example:
   const nock = require("nock");
   nock(process.env.BASE_URL || "https://api.example.com")
@@ -32,6 +33,5 @@ Stubbing (recommended for public repos / CI)
 - In CI, either point BASE_URL to a sandbox endpoint or enable stubbing so tests run without network calls.
 - Never commit real tokens.
 
-Notes
+## Notes
 - BASE_URL is a placeholder. Replace it with provider sandbox or keep stubbing.
-- Never commit real secrets. Sanitize logs before screenshots.
