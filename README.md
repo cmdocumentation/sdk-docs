@@ -27,8 +27,10 @@ Stubbing (recommended for public repos / CI)
     m.post(f"{BASE_URL}/resources", json={"id":"r2","name":"example"})
     # run example script logic here
 
-CI
-- Create repo secret `TEST_TOKEN` and either point BASE_URL to a sandbox endpoint or enable stubbing in CI.
+## CI & secrets
+- Add TEST_TOKEN in repository Settings → Secrets.
+- In CI, either point BASE_URL to a sandbox endpoint or enable stubbing so tests run without network calls.
+- Never commit real tokens.
 
 Notes
 - BASE_URL is a placeholder. Replace it with provider sandbox or keep stubbing.
