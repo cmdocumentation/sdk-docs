@@ -39,3 +39,4 @@ with requests_mock.Mocker() as m:
 
 ## Notes
 - BASE_URL is a placeholder. Replace it with a provider sandbox or keep stubbing.
+- Lessons learned: Keep examples minimal and environment-driven, support sandbox/stub mode for CI, sanitize logs and recordings to avoid leaking tokens, and prefer small dependencies so examples run quickly for newcomers.
