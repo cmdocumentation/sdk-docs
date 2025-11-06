@@ -1,4 +1,4 @@
-# SDK Examples (minimal)
+# sdk-docs
 [![Smoke tests](https://github.com/cmdocumentation/sdk-docs/actions/workflows/smoke.yml/badge.svg)](https://github.com/cmdocumentation/sdk-docs/actions/workflows/smoke.yml)
 
 ## Quickstart
