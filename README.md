@@ -19,8 +19,7 @@
    ```bash
    ./demo.sh
    ```
-
-Expected: JSON-like responses for list/create API calls. Replace BASE_URL with a real sandbox URL to call a live test API.
+   Expected: JSON-like responses for list/create API calls. Replace BASE_URL with a real sandbox URL to call a live test API.
 
 ## Stubbing (recommended for public repos / CI)
 - Node: use `nock` to intercept HTTP calls. Example:
@@ -41,10 +40,10 @@ Expected: JSON-like responses for list/create API calls. Replace BASE_URL with a
    ```
 
 ## CI & secrets
-- Add TEST_TOKEN in repository Settings → Secrets.
-- In CI, either point BASE_URL to a sandbox endpoint or enable stubbing so tests run without network calls.
+- Add `TEST_TOKEN` in the repository's **Settings → Secrets**.
+- In CI, either point `BASE_URL` to a sandbox endpoint or enable stubbing so tests run without network calls.
 - Never commit real tokens.
 
 ## Notes
-- BASE_URL is a placeholder. Replace it with a provider sandbox or keep stubbing.
+- `BASE_URL` is a placeholder. Replace it with a provider sandbox or keep stubbing.
 - Lessons learned: Keep examples minimal and environment-driven, support sandbox/stub mode for CI, sanitize logs and recordings to avoid leaking tokens, and prefer small dependencies so examples run quickly for newcomers.
