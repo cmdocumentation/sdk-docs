@@ -39,7 +39,7 @@
        # run example script logic here
    ```
 
-## CI & secrets
+## CI and secrets
 - Add `TEST_TOKEN` in the repository's **Settings → Secrets**.
 - In CI, either point `BASE_URL` to a sandbox endpoint or enable stubbing so tests run without network calls.
 - Never commit real tokens.
