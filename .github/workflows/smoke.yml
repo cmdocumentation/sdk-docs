@@ -17,15 +17,23 @@ jobs:
         run: cd examples/js && npm init -y && npm i node-fetch@3 nock --silent
       - name: Install deps (Python)
         run: python -m pip install --upgrade pip requests requests-mock
+      - name: Make scripts executable
+        run: |
+          chmod +x ./demo.sh || true
+          chmod +x ./examples/js/ci-run.js || true
+          chmod +x ./examples/python/ci_run.py || true
       - name: Run examples (stubbed)
         env:
+          STUB_MODE: 'true'
           BASE_URL: https://api.example.com/v1
           AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
         run: |
           # Node: run CI harness that registers nock stubs then runs index.js
           cd examples/js
           node ci-run.js
-
           # Python: run CI harness that registers requests-mock stubs then runs example.py
           cd ../python
           python ci_run.py
+          # Repo-level demo (optional fallback)
+          cd ../..
+          ./demo.sh --stub || ./demo.sh true
