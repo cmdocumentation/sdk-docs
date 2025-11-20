@@ -1,11 +1,11 @@
 # Minimal Python example (20–30 lines)
-# Usage: AUTH_TOKEN=sk_test_xxx BASE_URL=https://api.example.com/v1 python example.py
+# Usage: TEST_TOKEN=sk_test_xxx BASE_URL=https://api.example.com/v1 python example.py
 import os, sys, requests
 
 BASE_URL = os.environ.get("BASE_URL", "https://api.example.com/v1")
-AUTH = os.environ.get("AUTH_TOKEN")
+AUTH = os.environ.get("TEST_TOKEN")
 if not AUTH:
-    print("Missing AUTH_TOKEN", file=sys.stderr); sys.exit(1)
+    print("Missing TEST_TOKEN", file=sys.stderr); sys.exit(1)
 
 headers = {"Authorization": f"Bearer {AUTH}", "Content-Type": "application/json"}
 
