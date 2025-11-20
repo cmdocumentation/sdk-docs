@@ -1,8 +1,8 @@
 // Minimal Node example (20–30 lines)
-// Usage: AUTH_TOKEN=sk_test_xxx BASE_URL=https://api.example.com/v1 node index.js
+// Usage: TEST_TOKEN=sk_test_xxx BASE_URL=https://api.example.com/v1 node index.js
 const BASE_URL = process.env.BASE_URL || "https://api.example.com/v1";
-const AUTH = process.env.AUTH_TOKEN;
-if (!AUTH) { console.error("Missing AUTH_TOKEN"); process.exit(1); }
+const AUTH = process.env.TEST_TOKEN;
+if (!AUTH) { console.error("Missing TEST_TOKEN"); process.exit(1); }
 
 async function fetchJson(path, opts = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {
