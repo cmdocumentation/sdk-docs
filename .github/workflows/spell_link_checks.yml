@@ -1,0 +1,84 @@
+name: Docs Quality Checks (Spelling and Links)
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  cspell:
+    name: Spellcheck (cspell)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Run cspell (streetsidesoftware action)
+        uses: streetsidesoftware/cspell-action@v8
+        with:
+          incremental_files_only: true
+          config: '.'
+          inline: warning
+          strict: false
+      - name: Upload cspell report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cspell-report
+          path: cspell-report.txt
+
+  lychee:
+    name: Link check (lychee)
+    runs-on: ubuntu-latest
+    needs: []
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: false
+          args: --root-dir "${{ github.workspace }}" --cache --max-cache-age 1d './**/*.md' './**/*.html'
+          output: lychee/out.md
+      - name: Upload lychee report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lychee-report
+          path: lychee/out.md
+
+  report:
+    name: Consolidated report
+    runs-on: ubuntu-latest
+    needs: [cspell, lychee]
+    steps:
+      - name: Download cspell report
+        uses: actions/download-artifact@v4
+        with:
+          name: cspell-report
+      - name: Download lychee report
+        uses: actions/download-artifact@v4
+        with:
+          name: lychee-report
+      - name: Create combined issue when problems found
+        if: ${{ needs.cspell.result == 'failure' || needs.lychee.result == 'failure' || always() }}
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Docs quality checks — report for ${{ github.ref_name }} (run ${{ github.run_number }})
+          content: |
+            ## cspell report
+            (See attached artifact: cspell-report)
+            
+            ## lychee report
+            (See attached artifact: lychee/out.md)
+          labels: automated, docs
