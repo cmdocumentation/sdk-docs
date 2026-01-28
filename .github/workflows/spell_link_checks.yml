@@ -19,17 +19,23 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
+  
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - name: Run cspell (streetsidesoftware action)
-        uses: streetsidesoftware/cspell-action@v8
-        with:
-          incremental_files_only: true
-          config: '.'
-          inline: warning
-          strict: false
+  
+      - name: Install dependencies
+        run: npm ci --silent
+  
+      - name: Run cspell and save report (console)
+        run: npx cspell "**/*.md" --config .cspell.json --no-color || true
+        shell: bash
+  
+      - name: Save cspell output to file
+        run: npx cspell "**/*.md" --config .cspell.json --no-color > cspell-report.txt || true
+        shell: bash
+  
       - name: Upload cspell report
         if: always()
         uses: actions/upload-artifact@v4
