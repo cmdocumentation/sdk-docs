@@ -24,9 +24,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-  
-      - name: Install dependencies
-        run: npm install --silent
+          
+      - name: Install dependencies (with retry)
+        run: |
+          for i in 1 2 3; do npm install --silent && break || sleep 10; done
   
       - name: Run cspell and save report (console)
         run: npx cspell "**/*.md" --config .cspell.json --no-color || true
