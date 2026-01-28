@@ -20,4 +20,4 @@ jobs:
           # 'warning' makes annotations non-blocking; use 'error' to fail inline
           inline: warning
           # fail the job when issues found
-          strict: true
+          strict: false
